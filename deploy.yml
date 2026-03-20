@@ -6,11 +6,12 @@
       image_name: "toxicity-test:latest"
   tasks:
 
-    - name: Install Docker
+    - name: Install Docker (skip if already present)
       apt:
         name: docker.io
         state: present
         update_cache: yes
+      ignore_errors: yes
 
     - name: Install Docker Compose
       apt:
