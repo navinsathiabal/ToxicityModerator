@@ -37,7 +37,8 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/toxicity-app:1.0
 
       - name: Install Python dependencies for Ansible
-        run: pip install requests docker
+        run: |
+          python3 -m pip install requests docker
 
       - name: Install Ansible
         run: |
