@@ -1,0 +1,26 @@
+- name: Deploy Toxicity App
+  hosts: localhost
+  become: yes
+
+  vars:
+      image_name: "toxicity-test:latest"
+  tasks:
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Install Docker Compose
+      apt:
+        name: docker-compose
+        state: present
+
+    - name: Run Container
+      docker_container:
+        name: toxicity-app
+        image: "{{ image_name }}"
+        state: started
+        ports:
+          - "5000:5000"
