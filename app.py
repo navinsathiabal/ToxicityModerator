@@ -27,6 +27,5 @@ def metrics():
     return generate_latest()
 
 
-# 👇 IMPORTANT: keep this exactly like this
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
