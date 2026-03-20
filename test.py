@@ -1,10 +1,11 @@
-# test_app.py
 from app import app
+
 
 def test_home():
     client = app.test_client()
     res = client.get("/")
     assert res.status_code == 200
+
 
 def test_predict():
     client = app.test_client()
