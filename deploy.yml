@@ -4,7 +4,7 @@
 
   vars:
     ansible_python_interpreter: /usr/bin/python3
-    image_name: "toxicity-test:latest"
+    image_name: "{{ lookup('env', 'DOCKER_USERNAME') }}/toxicity-app:1.0"
 
   tasks:
 
