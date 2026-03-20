@@ -3,20 +3,28 @@
   become: yes
 
   vars:
-      image_name: "toxicity-test:latest"
+    image_name: "toxicity-test:latest"   # safe for CI + local
+
   tasks:
 
-    - name: Install Docker (skip if already present)
+    - name: Check if Docker exists
+      command: docker --version
+      register: docker_check
+      ignore_errors: yes
+
+    - name: Install Docker (skip if already installed)
       apt:
         name: docker.io
         state: present
         update_cache: yes
+      when: docker_check.failed
       ignore_errors: yes
 
     - name: Install Docker Compose
       apt:
         name: docker-compose
         state: present
+      ignore_errors: yes
 
     - name: Run Container
       docker_container:
